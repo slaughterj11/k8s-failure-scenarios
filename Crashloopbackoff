@@ -1,4 +1,10 @@
-containers:
-- name: crash-loop
-  image: busybox:latest
-  command: ["sh", "-c", "exit 1"]
+apiVersion: v1
+kind: Pod
+metadata:
+  name: crashloop-busybox
+spec:
+  containers:
+  - name: bad-app
+    image: busybox
+    command: ["sh", "-c", "echo Starting...; sleep 3; exit 1"]
+    restartPolicy: Always
